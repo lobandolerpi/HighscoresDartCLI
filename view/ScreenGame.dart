@@ -11,11 +11,12 @@ class ScreenGame extends Screen {
     bool StayInLoop = true;
     Routes rOut = Navigation().currentroute;
     while (StayInLoop) {
-      print("\n--- LOGIN SCREEN ---");
+      print("\n--- GAME SCREEN ---");
       print("0. Exit \n 1. Login (Refresh) \n 2. User \n 3. Game \n 4. Where am I?");
       stdout.write("Choose option: ");
       
       String? input = stdin.readLineSync();
+      print("/n");
       switch (input){
         case '0': {
             print("Has seleccionat: Exit");
