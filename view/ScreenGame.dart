@@ -7,36 +7,40 @@ import 'Screen.dart';
 class ScreenGame extends Screen {
 
   @override
-  Routes show() {
+  void show() {
     bool StayInLoop = true;
-    Routes rOut = Navigation().currentroute;
+    Routes rOut = Navigation().currentRoute;
     while (StayInLoop) {
       print("\n--- GAME SCREEN ---");
-      print("0. Exit \n 1. Login (Refresh) \n 2. User \n 3. Game \n 4. Where am I?");
+      print("0. Exit \n1. Login (Refresh) \n 2. User \n 3. Game \n 4. Where am I?");
       stdout.write("Choose option: ");
       
       String? input = stdin.readLineSync();
-      print("/n");
+      print("\n");
       switch (input){
         case '0': {
             print("Has seleccionat: Exit");
             StayInLoop = false;
-            return Routes.exit;
+            Navigation().goTo(Routes.exit);
+            return;
           }
         case '1': {
             print("Has seleccionat: Login");
             StayInLoop = false;
-            return Routes.login;
+            Navigation().goTo(Routes.login);
+            return;
           }
         case '2': {
           print("Has seleccionat: User");
           StayInLoop = false;
-          return Routes.user;
+          Navigation().goTo(Routes.user);
+          return;
           }
         case '3': {
           print("Has seleccionat: Exit");
           StayInLoop = false;
-          return Routes.game;
+          Navigation().goTo(Routes.game);
+          return;
         }
         case '4': {
           print("Ara estàs a GAME");
@@ -46,6 +50,6 @@ class ScreenGame extends Screen {
         }
       }
     }
-    return rOut;
+    return;
   }
 }

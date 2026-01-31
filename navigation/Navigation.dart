@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../../practicaJuegos/model/User.dart';
 import '../view/Screen.dart';
 import '../view/ScreenGame.dart';
 import '../view/ScreenLogin.dart';
@@ -13,6 +14,7 @@ class Navigation{
   //     Només s'executa un cop, perque _instance és final
   static final Navigation _instance = Navigation._internal();
   Routes _currentRoute = Routes.login;
+  User? currentUser = null;
   
   // El constructor public retorna la instancia
   // Si ja existeix, doncs la que és,
@@ -26,7 +28,7 @@ class Navigation{
   }
 
   // Això és un getter public de la variable privada.
-  Routes get currentroute => _currentRoute;
+  Routes get currentRoute => _currentRoute;
   
   // En comptes de setter faig servir un metodeDiferent
 
@@ -43,7 +45,7 @@ class Navigation{
     while (_currentRoute != Routes.exit) {
       Screen nextScreen;
 
-      switch(currentroute){
+      switch(currentRoute){
         case Routes.login:
           nextScreen = ScreenLogin();
           break;
@@ -56,7 +58,7 @@ class Navigation{
         default:
           nextScreen = ScreenLogin();
       }
-      _currentRoute = nextScreen.show();
+      nextScreen.show();
     }
   }
 }
