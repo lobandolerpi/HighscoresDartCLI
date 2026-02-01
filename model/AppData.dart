@@ -38,6 +38,11 @@ class AppData {
     return _games[codi];
   }
 
+  Map<String, Game> get games {
+    Map<String, Game> lg =Map.of(_games);
+    return lg;
+  }
+
   bool addGame(Game g) {
     if (_games.containsKey(g.code)) {
       return false; 

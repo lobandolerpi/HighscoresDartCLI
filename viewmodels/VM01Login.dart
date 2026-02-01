@@ -46,7 +46,7 @@ class VM01Login{
       action: _rOption);
   }
 
-  //REGISTER USER
+  //LOG IN
     void _iOption() {
     String email = ask.askEmail("Indica l'email de l'usuari : ");
     User? u = UserDB().getUser(email);

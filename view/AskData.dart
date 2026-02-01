@@ -56,4 +56,10 @@ class AskData {
     }
     return inUsrTxt;
   }
+
+  void printList(List<String> l){
+    for (String s in l){
+      print(s);
+    }
+  }
 }

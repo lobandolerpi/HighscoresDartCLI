@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../model/Games/Game.dart';
 import '../model/User.dart';
 import '../view/Screen.dart';
 import '../view/ScreenGame.dart';
@@ -15,6 +16,7 @@ class Navigation{
   static final Navigation _instance = Navigation._internal();
   Routes _currentRoute = Routes.login;
   User? currentUser = null;
+  Game? currentGame = null;
   
   // El constructor public retorna la instancia
   // Si ja existeix, doncs la que és,
