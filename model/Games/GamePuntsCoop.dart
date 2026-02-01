@@ -2,7 +2,7 @@
 part of './Game.dart';
 
 class GamePuntsCoop extends GamePunts {
-  final List<Team> teams = [];
+  final Map<String, Team> teams = {};
 
   // El constructor recull
   GamePuntsCoop({
@@ -20,30 +20,60 @@ class GamePuntsCoop extends GamePunts {
        ) {
        }
   
-  (String, Map<String, int>) getMaxTeamScore(Map<String, int> scoresPartial) {
+  (String, Map<String, Team>) getMaxTeamScore(Map<String, Team> teamsIn) {
     String maxS = "";
-    if (scoresPartial.isEmpty) {
-      return (maxS, scoresPartial);
+    if (teamsIn.isEmpty) {
+      return (maxS, teamsIn);
     }
-    Map<String, int> scoresCopy = Map.of(scoresPartial);
-    var maxEntry = scoresPartial.entries.first;
+    Map<String, Team> teamsCopy = Map.of(teamsIn);
+    var maxEntry = teamsIn.entries.first;
+    Team maxTeam = maxEntry.value;
+    int maxTeamScore = computeTeamScore(maxTeam);
+    String maxTeamName = maxEntry.key;
 
-    int maxScore = maxEntry.value;
-    String maxEmail = maxEntry.key;
-
-    String currentEmail = "";
-    int currentScore = 0;
-    for (var entry in scoresPartial.entries) {
-      currentEmail = entry.key;
-      currentScore = entry.value;
-      if (currentScore > maxScore) {
+    String currentTeamName= "";
+    int currentTeamScore = 0;
+    Team currentTeam;
+    for (var entry in teamsCopy.entries) {
+      currentTeamName = entry.key;
+      currentTeam = entry.value;
+      currentTeamScore = computeTeamScore(currentTeam);
+      if (currentTeamScore > maxTeamScore) {
         maxEntry = entry;
-        maxScore = currentScore;
-        maxEmail = currentEmail;
+        maxTeamScore = currentTeamScore;
+        currentTeamName = entry.key;
+        maxTeam = currentTeam;
       }
     }
-    scoresCopy.remove(maxEmail);
-    String out = maxScore.toString() + " " + maxEmail;
-    return (out, scoresCopy);
+    teamsCopy.remove(currentTeamName);
+    String out = maxTeamScore.toString() + " " + currentTeamName;
+    return (out, teamsCopy);
+  }
+
+  int computeTeamScore(Team t){
+    int teamScore = 0;
+    for (User u in t.users){
+      var entryU = scores[u.email];
+      int userScore = 0;
+      if (entryU == null){
+        print("BUG: usuari de l'equip no hi és a la llista de pubtuacions");
+      } else {
+        userScore = entryU;
+      }
+      teamScore += userScore;
+    }
+    return teamScore;
+  }
+
+  @override
+  List<String> getHighscores() {
+    List<String> hs = [];
+    String nextMaxTxt = "";
+    Map<String, Team> teamsNext = Map.of(this.teams);
+    while (!teamsNext.isEmpty || hs.length < 10) {
+      (nextMaxTxt, teamsNext) = getMaxTeamScore(teamsNext);
+      hs.add(nextMaxTxt);
+    }
+    return hs;
   }
 }
