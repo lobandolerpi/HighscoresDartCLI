@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../../practicaJuegos/model/User.dart';
+import '../model/User.dart';
 import '../view/Screen.dart';
 import '../view/ScreenGame.dart';
 import '../view/ScreenLogin.dart';

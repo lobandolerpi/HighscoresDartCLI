@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../../practicaJuegos/model/User.dart';
+import '../model/User.dart';
 import '../navigation/Navigation.dart';
 import '../navigation/Routes.dart';
 import 'Screen.dart';

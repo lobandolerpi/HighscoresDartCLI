@@ -33,8 +33,9 @@ class GameWL extends Game<List<bool>> {
     List<bool> maxList = maxEntry.value;
     double maxP = 0.0;
     int maxW = 0;
-    (maxP, maxW) = getScoreFromList(maxList);
     String maxEmail = maxEntry.key;
+    (maxP, maxW) = getScoreFromList(maxList);
+    
 
     String currentEmail = "";
     List<bool> currentList = [];
@@ -52,10 +53,11 @@ class GameWL extends Game<List<bool>> {
         maxEmail = currentEmail;
       } 
     }
-    scoresCopy.remove(maxEmail);
+    
     maxP = maxP * 100;
     String out =
         maxP.toStringAsFixed(2) + "% " + maxW.toString() + "W " + maxEmail;
+    scoresCopy.remove(maxEmail);
     return (out, scoresCopy);
   }
 

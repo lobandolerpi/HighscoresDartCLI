@@ -31,6 +31,23 @@ class AskData {
     return inUsrTxt ;
   }
 
+
+  String askStringInList(String question, List<String> allowed){
+    bool accept = false;
+    String inUsrTxt = "kk";
+    while (!accept){
+      inUsrTxt = askString(question);
+      if (!allowed.contains(inUsrTxt.toUpperCase()) 
+      &&  !allowed.contains(inUsrTxt.toLowerCase()) ) 
+      {
+        print("Opció no vàlida, torna-ho a intentar.");
+      } else {
+        accept = true;
+      }
+    }
+    return inUsrTxt ;
+  }
+
   String askEmail(String question){
     String inUsrTxt = askStringNoCharacter(question, [",",";","|"]);
     while(!inUsrTxt.isValidEmail()){

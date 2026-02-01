@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import '../../practicaJuegos/model/User.dart';
-import '../../practicaJuegos/model/UserDB.dart';
+import '../model/User.dart';
+import '../model/UserDB.dart';
 import '../model/OptionMenu.dart';
 import '../navigation/Navigation.dart';
 import '../navigation/Routes.dart';
